@@ -1,13 +1,7 @@
 package com.dav.shopping.config;
 
 import java.io.IOException;
-<<<<<<< HEAD
 import java.util.List;
-=======
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
->>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletContext;
@@ -17,11 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
-=======
-import com.dav.shopping.entity.Permission;
-import com.dav.shopping.service.PermissionService;
->>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -50,12 +39,6 @@ public class JwtFilter extends GenericFilterBean {
 	@Autowired
 	private RoleService roleService;
 
-<<<<<<< HEAD
-=======
-	@Autowired
-	private PermissionService permissionService;
-
->>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 	private void createService(ServletRequest request) {
 		ServletContext servletContext = request.getServletContext();
 		WebApplicationContext webApplicationContext = WebApplicationContextUtils
@@ -74,12 +57,6 @@ public class JwtFilter extends GenericFilterBean {
 		if (roleService == null) {
 			roleService = webApplicationContext.getBean(RoleService.class);
 		}
-<<<<<<< HEAD
-=======
-		if (permissionService == null) {
-			permissionService = webApplicationContext.getBean(PermissionService.class);
-		}
->>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 	}
 	
 	@SuppressWarnings("unused")
@@ -121,10 +98,6 @@ public class JwtFilter extends GenericFilterBean {
 					response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Lỗi token, xin đăng nhập lại");
 					return;
 				}
-<<<<<<< HEAD
-=======
-
->>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 				User user = userService.findByEmail(username);
 
 				if (user == null) {
@@ -136,15 +109,11 @@ public class JwtFilter extends GenericFilterBean {
 				Action action = actionService.findByName(url);
 				System.out.println(url);
 				if (action == null) {
-<<<<<<< HEAD
 					// System.out.println(action.getName());
-=======
->>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 					response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 					response.sendError(HttpServletResponse.SC_NOT_FOUND, "Không tìm thấy trang");
 					return;
 				} else {
-<<<<<<< HEAD
 					List<Role> roles = roleService.findByUser(user.getEmail());
 
 					for (Role role : roles) {
@@ -159,17 +128,6 @@ public class JwtFilter extends GenericFilterBean {
 							response.sendError(HttpServletResponse.SC_FORBIDDEN, "Không có quyền truy cập");
 							return;
 						}
-=======
-
-					int countPermission = permissionService.countPermission(action.getName(),user.getId());
-
-					if(countPermission!=0){
-						response.setStatus(HttpServletResponse.SC_OK);
-					}else {
-						response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-						response.sendError(HttpServletResponse.SC_FORBIDDEN, "Không có quyền truy cập");
-						return;
->>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 					}
 				}
 				chain.doFilter(req, res);

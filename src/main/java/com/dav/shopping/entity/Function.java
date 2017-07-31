@@ -10,7 +10,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "functions")
+<<<<<<< HEAD
 public class Function {
+=======
+public class Function implements Serializable{
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,19 +33,37 @@ public class Function {
     @Transient
     private long _parentId;
 
+<<<<<<< HEAD
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "permission", joinColumns = @JoinColumn(name = "function_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     @JsonIgnore
     private Set<Role> roles;
 
     @ManyToOne(fetch = FetchType.EAGER)
+=======
+    @OneToMany(mappedBy = "primaryKey.function", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<Permission> permissions;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
     @JoinColumn(name = "parentId")
     @JsonBackReference
     private Function parentId;
 
+<<<<<<< HEAD
     @OneToMany(mappedBy = "parentId", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Function> functions;
 
+=======
+    @OneToMany(mappedBy = "parentId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Function> functions;
+
+    public void addPermission(Permission permission){
+        this.permissions.add(permission);
+    }
+
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
     public Long getId() {
         return id;
     }
@@ -98,6 +120,7 @@ public class Function {
         this.iconCss = iconCss;
     }
 
+<<<<<<< HEAD
 
     public Set<Role> getRoles() {
         return roles;
@@ -105,6 +128,22 @@ public class Function {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+=======
+    public long get_parentId() {
+        return _parentId;
+    }
+
+    public void set_parentId(long _parentId) {
+        this._parentId = _parentId;
+    }
+
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
     }
 
     public Function getParentId() {
@@ -120,6 +159,7 @@ public class Function {
     }
 
     public void setFunctions(Set<Function> functions) {
+<<<<<<< HEAD
         if (functions != null && functions.size() > 0)
             this.functions.clear();
         this.functions = functions;
@@ -132,4 +172,8 @@ public class Function {
     public void set_parentId(long _parentId) {
         this._parentId = _parentId;
     }
+=======
+        this.functions = functions;
+    }
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 }

@@ -19,11 +19,17 @@ public interface RoleRepository extends JpaRepository<Role, Long>{
 	@Query(value = "SELECT r FROM Role r WHERE r.role LIKE %:filter% OR r.description LIKE %:filter%")
 	Page<Role> findAll(@Param("filter")String filter, Pageable pageable);
 	
+<<<<<<< HEAD
 	@Query(value = "SELECT r FROM Role r  JOIN r.users u WHERE u.email = :email")
 	List<Role> findByUser(@Param("email")String email);
 	
 	
 	
+=======
+	@Query(value = "SELECT ur.userRoleId.role FROM UserRole ur WHERE ur.userRoleId.user.id= :userId")
+	List<Role> findByUser(@Param("userId")long userId);
+
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 	Role findByRole(String role);
 	
 }

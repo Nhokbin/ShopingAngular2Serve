@@ -18,7 +18,11 @@ import com.dav.shopping.service.RoleService;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service("roleService")
+<<<<<<< HEAD
 @Transactional
+=======
+@Transactional(readOnly = true)
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 public class RoleServiceImpl implements RoleService {
     private static final int PAGE_SIZE = 20;
 
@@ -26,9 +30,15 @@ public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
 
     @Override
+<<<<<<< HEAD
     public List<Role> findByUser(String email) {
 
         return roleRepository.findByUser(email);
+=======
+    public List<Role> findByUser(long userId) {
+
+        return roleRepository.findByUser(userId);
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
     }
 
     @Override
@@ -56,18 +66,39 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+<<<<<<< HEAD
+=======
+    @Transactional
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
     public boolean createRole(Role role) {
         // TODO Auto-generated method stub
         return roleRepository.saveAndFlush(role) != null ? true : false;
     }
 
     @Override
+<<<<<<< HEAD
     public boolean update(Role role) {
         // TODO Auto-generated method stub
         return roleRepository.save(role) != null ? true : false;
     }
 
     @Override
+=======
+    @Transactional
+    public boolean update(Role role) {
+        // TODO Auto-generated method stub
+       /* Role entity = roleRepository.findOne(role.getId());
+        if(role!=null){
+            entity.setRole(role.getRole());
+            entity.setDescription(role.getDescription());
+            return  true;
+        }*/
+        return roleRepository.save(role)!= null;
+    }
+
+    @Override
+    @Transactional
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
     public boolean delete(Role role) {
         // TODO Auto-generated method stub
         try {
@@ -82,7 +113,11 @@ public class RoleServiceImpl implements RoleService {
     public Role savePermission(Role role) {
         Role entity = roleRepository.findOne(role.getId());
 
+<<<<<<< HEAD
         entity.setId(role.getId());
+=======
+        /*entity.setId(role.getId());
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
         entity.setDescription(role.getDescription());
         entity.setRole(role.getRole());
 
@@ -93,7 +128,11 @@ public class RoleServiceImpl implements RoleService {
 
         entity.setUsers(role.getUsers());
 
+<<<<<<< HEAD
         roleRepository.save(entity);
+=======
+        roleRepository.save(entity);*/
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 
 
         return entity;

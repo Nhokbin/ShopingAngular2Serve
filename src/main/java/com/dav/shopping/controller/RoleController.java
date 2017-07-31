@@ -36,6 +36,14 @@ public class RoleController {
 		return roleService.findAll();
 	}
 
+<<<<<<< HEAD
+=======
+	@RequestMapping(value = "/get-by-user", method = RequestMethod.GET)
+	public List<Role> getUserRole(@RequestParam(required = true, defaultValue = "1", value = "userId") long userId){
+		return roleService.findByUser(userId);
+	}
+
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 	@RequestMapping(value = "/get-all", method = RequestMethod.GET)
 	public Page<Role> getRoles(@RequestParam(required = true, defaultValue = "1", value = "page") int page,
 			@RequestParam(required = false, defaultValue = "1", value = "pageSize") int pageSize,
@@ -107,12 +115,20 @@ public class RoleController {
 		}
 
 
+<<<<<<< HEAD
 		role.setFunctions(functions);
+=======
+	/*	role.setFunctions(functions);
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 		role.setActions(actions);
 		if(roleService.savePermission(role)!=null){
 			result.put("result", true);
 			return new ResponseEntity<Map<String, Boolean>>(result, HttpStatus.OK);
+<<<<<<< HEAD
 		}
+=======
+		}*/
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 		return new ResponseEntity<Map<String, Boolean>>(HttpStatus.BAD_REQUEST);
 	}
 
@@ -124,7 +140,11 @@ public class RoleController {
 		Map<String, Boolean> result = new HashMap<>();
 		if (role.getRole().trim().equals("")) {
 			return new ResponseEntity<Map<String, Boolean>>(HttpStatus.NOT_FOUND);
+<<<<<<< HEAD
 		} else if (roleService.createRole(role)) {
+=======
+		} else if (roleService.update(role)) {
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 			result.put("result", true);
 			return new ResponseEntity<Map<String, Boolean>>(result, HttpStatus.OK);
 		}

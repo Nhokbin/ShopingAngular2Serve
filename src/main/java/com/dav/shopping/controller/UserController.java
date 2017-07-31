@@ -72,7 +72,11 @@ public class UserController {
 		
 		Map<String, String> data = new HashMap();
 		
+<<<<<<< HEAD
 		data.put("id", user.getUserId()+"");
+=======
+		data.put("id", user.getId()+"");
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 		data.put("access_token", "Bearer " +jwtToken);
 		data.put("email", user.getEmail());
 		data.put("username", user.getLastName());

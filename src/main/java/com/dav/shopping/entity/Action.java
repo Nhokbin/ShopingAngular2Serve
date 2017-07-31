@@ -1,5 +1,6 @@
 package com.dav.shopping.entity;
 
+<<<<<<< HEAD
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,12 +12,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+=======
+import java.io.Serializable;
+import java.util.Set;
+
+import javax.persistence.*;
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "actions")
+<<<<<<< HEAD
 public class Action {
+=======
+public class Action implements Serializable{
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,11 +35,18 @@ public class Action {
 	
 	private String name;
 	private String description;
+<<<<<<< HEAD
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "permission", joinColumns = @JoinColumn(name = "action_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	@JsonIgnore
 	private Set<Role> roles;
+=======
+
+	@OneToMany(mappedBy = "primaryKey.action", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	private Set<Permission> permissions;
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 
 	public Long getId() {
 		return id;
@@ -54,6 +72,7 @@ public class Action {
 		this.description = description;
 	}
 
+<<<<<<< HEAD
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -62,6 +81,16 @@ public class Action {
 		this.roles = roles;
 	}
 	
+=======
+	public Set<Permission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(Set<Permission> permissions) {
+		this.permissions = permissions;
+	}
+
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 	@Override
 	public boolean equals(Object obj) {
 		boolean result = false;
@@ -75,4 +104,11 @@ public class Action {
 		}
 		return result;
 	}
+<<<<<<< HEAD
+=======
+
+	public void addPermission(Permission permission){
+		this.permissions.add(permission);
+	}
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 }

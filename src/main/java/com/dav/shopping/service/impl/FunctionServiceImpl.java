@@ -14,7 +14,11 @@ import java.util.List;
  * Created by Duong Vu on 27/06/2017.
  */
 @Service
+<<<<<<< HEAD
 @Transactional
+=======
+@Transactional(readOnly = true)
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
 public class FunctionServiceImpl implements FunctionService {
 
     @Autowired
@@ -41,9 +45,16 @@ public class FunctionServiceImpl implements FunctionService {
     }
 
     @Override
+<<<<<<< HEAD
     public boolean delete(Function function){
         try {
             functionRepository.delete(function);
+=======
+    @Transactional
+    public boolean delete(Function function){
+        try {
+            functionRepository.delete(function.getId());
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,6 +63,7 @@ public class FunctionServiceImpl implements FunctionService {
     }
 
     @Override
+<<<<<<< HEAD
     public Function update(Function function){
         Function entity = functionRepository.findOne(function.getId());
         if(entity!=null){
@@ -68,5 +80,10 @@ public class FunctionServiceImpl implements FunctionService {
             entity.getFunctions().addAll(function.getFunctions());
         }
         return entity;
+=======
+    @Transactional
+    public Function update(Function function){
+        return functionRepository.save(function);
+>>>>>>> 186bf2c4019450fca81ea03ab4dd11a24e2dee92
     }
 }
